@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>跨境-供应商</title>
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="format-detection" content="telephone=no, email=no, address=no">
+<meta name="applicable-device" content="mobile">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="css/i/apple-touch/icon-57.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="css/i/apple-touch/icon-120.png">
+<link rel="apple-touch-icon-precomposed" sizes="196x196" href="css/i/apple-touch/icon-196.png">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta name="description" content="">
+<meta name="Keywords" content="">
+<script type="text/javascript">
+(function() { var a = this; a.width = 750; a.fontSize = 100; a.widthProportion = function() { var c = (document.getElementsByTagName("html")[0].offsetWidth) / a.width; return c > 1 ? 1 : c < 0.42667 ? 0.42667 : c; }; a.changePage=function() { var remVal=( parseFloat(a.widthProportion())*100).toFixed(2); document.getElementsByTagName( "html")[0].setAttribute( "style", "font-size:" + remVal + "px !important"); }; a.changePage(); window.addEventListener( "resize", function() { a.changePage() }, false); })();
+</script>
+
+<link rel="stylesheet" type="text/css" href="${webUiUrl}/css/icons.css">
+<link rel="stylesheet" type="text/css" href="${webUiUrl}/css/cross-supplier.css">
+<script defer async type="text/javascript" data-main="${webUiUrl}/js/web/cross-supplier.js?v=${.now}" src="${webUiUrl}/js/base/require.min.js"></script>
+<!-- <script defer async type="text/javascript" data-main="js/cross-supplier" src="js/require.min.js"></script> -->
+	</head>
+
+	<body>
+	<input   class="tab" value="${tab}" >
+		<div class="content">
+			<div class="tab tab-flex">
+				<div class="tab-li  tab1 ">
+					<div class="tab-text">
+						品牌 
+					</div>
+				</div>
+			</div>
+		</div>
+		 <#list list as	tradePo>
+
+		<div class="brand tab-modal tab-modal1">
+			<div class="brand-class">
+				<div class="class-title">
+					 ${tradePo.tagName}
+				</div>
+			</div>
+			<div class="brand-logo">
+			   <#list tradePo.queryBrandReqDto as	l>
+				<div class="logo-li">
+					<div class="logo-img" brandCnName="${l.brandCnName}" brandId="${l.brandId}" tagName="${tradePo.tagName}">
+					<#if l.brandUrl?? && l.brandUrl != "">
+						<img alt="" src="${cuturl}${l.brandUrl}@140h_210w_2e">
+					</#if>
+					</div>
+					<div class="logo-supplier">
+						${l.brandCnName}
+					</div>
+				</div>
+				</#list>
+			</div>
+		</div>
+				
+		 </#list>
+		
+		<input id="webUrl" value="${webUrl}" type="hidden" />
+	</body>
+
+</html>

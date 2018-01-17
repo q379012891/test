@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>确认采购单-提交成功</title>
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="format-detection" content="telephone=no, email=no, address=no">
+<meta name="applicable-device" content="mobile">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="css/i/apple-touch/icon-57.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="css/i/apple-touch/icon-120.png">
+<link rel="apple-touch-icon-precomposed" sizes="196x196" href="css/i/apple-touch/icon-196.png">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta name="description" content="">
+<meta name="Keywords" content="">
+<script type="text/javascript">
+(function() { var a = this; a.width = 750; a.fontSize = 100; a.widthProportion = function() { var c = (document.getElementsByTagName("html")[0].offsetWidth) / a.width; return c > 1 ? 1 : c < 0.42667 ? 0.42667 : c; }; a.changePage=function() { var remVal=( parseFloat(a.widthProportion())*100).toFixed(2); document.getElementsByTagName( "html")[0].setAttribute( "style", "font-size:" + remVal + "px !important"); }; a.changePage(); window.addEventListener( "resize", function() { a.changePage() }, false); })();
+</script>
+<link rel="stylesheet" type="text/css" href="${webUiUrl}/css/icons.css">
+<link rel="stylesheet" type="text/css" href="${webUiUrl}/css/information.css">
+<script defer async type="text/javascript" data-main="${webUiUrl}/js/web/information.js" src="${webUiUrl}/js/base/require.min.js"></script>
+</head>
+
+<body style="background:#efeff4">
+    <div class="content">
+        <!-- <header class="bar bar-header bar-dark">
+            <div class="bar-left">
+                 <a href="javascript:history.go(-1)" class="button">
+                    <div class="iconfont arrow-back"></div>返回
+                </a>
+            </div>
+            <h1 class="title">
+                  扫码采购
+              </h1>
+            <div class="bar-right">
+                <a href="javascript:;" class="button iconfont error"></a>
+                <a href="javascript:;" class="button iconfont more-v"></a>
+            </div>
+        </header> -->
+        <div id="sweep" class="contact-information">
+            <div class="msg">
+                <div class="msg-successful"><img src="${webUiUrl}/css/i/success3x.png" alt=""></div>
+                <div class="msg-operation">采购意向已提交成功</div>
+                <div class="msg-details">百联全球购业务经理将尽快与您联系</div>
+                <div class="msg-details">请保持您的电话${purPhone}畅通</div>                
+                <div class="msg-button">
+                    <button type="button" class="msg-btn-1 click-show">继续采购</button>
+                    <!-- <button type="button" class="msg-btn-2">继续采购</button> -->
+                </div>
+                <div class="call">如有疑问欢迎致电我们 (020)7776678</div>
+                <input id="webUrl" value="${webUrl}" type="hidden" />
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

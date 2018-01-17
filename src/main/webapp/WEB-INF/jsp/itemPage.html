@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>${tagName}</title>
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="format-detection" content="telephone=no, email=no, address=no">
+<meta name="applicable-device" content="mobile">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="css/i/apple-touch/icon-57.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="css/i/apple-touch/icon-120.png">
+<link rel="apple-touch-icon-precomposed" sizes="196x196" href="css/i/apple-touch/icon-196.png">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta name="description" content="">
+<meta name="Keywords" content="">
+<script type="text/javascript">
+(function() { var a = this; a.width = 750; a.fontSize = 100; a.widthProportion = function() { var c = (document.getElementsByTagName("html")[0].offsetWidth) / a.width; return c > 1 ? 1 : c < 0.42667 ? 0.42667 : c; }; a.changePage=function() { var remVal=( parseFloat(a.widthProportion())*100).toFixed(2); document.getElementsByTagName( "html")[0].setAttribute( "style", "font-size:" + remVal + "px !important"); }; a.changePage(); window.addEventListener( "resize", function() { a.changePage() }, false); })();
+</script>
+<link rel="stylesheet" type="text/css" href="${webUiUrl}/css/icons.css">
+<link rel="stylesheet" type="text/css" href="${webUiUrl}/css/global.css">
+<script defer async type="text/javascript" data-main="${webUiUrl}/js/web/global.js" src="${webUiUrl}/js/base/require.min.js"></script>
+<script defer async type="text/javascript" data-main="${webUiUrl}/js/web/itemPage.js" src="${webUiUrl}/js/base/require.min.js"></script>
+</head>
+
+<body style="background:#efeff4">
+    <div class="content">
+        <!-- <header class="bar bar-header bar-dark">
+            <div class="bar-left">
+                <a href="javascript:history.go(-1)" class="button">
+                    <div class="iconfont arrow-back"></div>返回
+                </a>
+            </div>
+            <h1 class="title">
+                ${tagName}
+            </h1>
+            <div class="bar-right">
+                <a href="javascript:;" class="button iconfont error"></a>
+                <a href="javascript:;" class="button iconfont more-v"></a>
+            </div>
+        </header> -->
+        <div class="global-purchasing">
+            <div class="goods-list">
+                <div class="bl-goods">
+                    <div class="floor-goods">
+                        <ul class="gl-goods">
+                        	<#list list as goodsList>
+	                            <li>
+	                                <div class="white-bg">
+	                                    <a href="javascript:;">
+	                                        <div class="lazy-box">
+	                                            <div class="instructions" style="display: none;">
+	                                                <span><i></i>原产国：${goodsList.oriCountry}</span>
+	                                                <span><i></i>包装：${goodsList.itemSpec}</span>
+	                                                <span><i></i>保质期：${goodsList.expirationDate}天</span>
+	                                            </div>
+	                                            <#if goodsList.itemImage?? && goodsList.itemImage != "">
+	                                            	<img class="lazy" data-original="" src="${cuturl}${goodsList.itemImage}@310h_310w_2e" alt="">
+	                                            </#if>
+	                                        </div>
+	                                        <div class="gl-text">${goodsList.itemName}</div>
+	                                        <div class="btn">
+	                                            <button type="button" class="but" barCode="${goodsList.barCode}">加入采购车</button>
+	                                        </div>
+	                                    </a>
+	                                </div>
+	                            </li>
+                            </#list>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shopping-cart">
+        <span id="shoppingCartSum">0</span>
+        <a href="javascript:void(0);" id="goConfirmPurchasing">
+        	<img src="${webUiUrl}/css/i/shoppingCart.png">
+        </a>
+        <!-- 提交参数集 -->
+        <input type="hidden" id="shoppingCartData" value="">
+        <!-- ip地址 -->
+        <input type="hidden" id="webUiUrl" value="${webUiUrl}">
+    </div>
+    <!-- 弹窗div -->
+    <div class="show-bg-msg" style="border-radius:.25rem;text-align:center;line-height:.5rem;color:#ffffff;background-color:rgba(0,0,0,.7);position:fixed;width:80%;left:10%;top:50%;font-size:.6rem;z-index:9999;display:none;padding:.3rem .5rem;margin:0px;font-size: 10px;"></div>
+</body>
+
+</html>

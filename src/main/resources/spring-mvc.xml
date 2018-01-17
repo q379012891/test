@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/data/repository http://www.springframework.org/schema/data/repository/spring-repository-1.6.xsd">
+    
+    <description>Spring MVC Configuration</description>
+    <!-- 引入配置文件 -->
+	<context:property-placeholder location="classpath*:/*.properties"
+		ignore-resource-not-found="true" ignore-unresolvable="true" />
+    <!--自定义切面所在包-->
+    <context:component-scan base-package="com.blgroup.jkl"/>
+	<!--  基于JDK动态代理 ，可以将@Transactional放置在接口和具体类上。
+		    基于CGLIB类代理，只能将@Transactional放置在具体类上。 -->
+	<!-- switch expose aop proxy for threadlocal support -->
+	<!-- XML configuration Support -->
+	<!-- <aop:config expose-proxy="true" proxy-target-class="true"/> -->
+	<!-- <aop:config proxy-target-class="true"/> -->
+	
+	<!-- Define aspectj for which class not interfaced forced to Cglib, since jdk proxy not supported-->
+	<!-- Annotation Support -->
+	<!-- <aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"/> -->
+	<!-- <aop:aspectj-autoproxy proxy-target-class="true"/> -->
+	
+	<!-- 默认的注解映射的支持，org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping -->
+	<mvc:annotation-driven/>
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	<bean id="mappingJacksonHttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>apolication/json; charset=UTF-8</value>
+				<value>text/html;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+    
+	<!-- 使用cookie处理国际化-->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="cookieName" value="clientlanguage" />
+		<property name="cookieMaxAge" value="94608000" />
+		<property name="defaultLocale" value="zh" />
+	</bean>
+	
+	<!-- <bean id="localeResolver" class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver"/> -->
+
+	<!-- 国际化的消息资源文件（本系统中主要用于显示/错误消息定制） -->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <!-- 在web环境中一定要定位到classpath 否则默认到当前web应用下找  -->
+                <value>classpath:i18n/osp-web-msg</value>
+            </list>
+        </property>
+        <property name="useCodeAsDefaultMessage" value="false"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="cacheSeconds" value="60"/>
+    </bean>
+    
+	<!-- Freemarker配置 -->  
+	<bean id="freemarkerConfig"  
+	      class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">  
+	    <property name="templateLoaderPath" value="/" />  
+	    <property name="freemarkerSettings">  
+	        <props>  
+	            <prop key="template_update_delay">0</prop>  
+	            <prop key="default_encoding">UTF-8</prop>  
+	            <prop key="number_format">0.##########</prop>  
+	            <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>  
+	            <prop key="classic_compatible">true</prop>  
+	            <prop key="template_exception_handler">ignore</prop>  
+	        </props>  
+	    </property>  
+	  	<property name="freemarkerVariables">
+	    	<map>
+	    		<entry key="webUrl" value="${webUrl}" />
+	    		<entry key="webUiUrl" value="${webUiUrl}" />
+	    	</map>
+	    </property>
+	</bean>
+	<!--视图解释器 -->  
+	<bean id="viewResolver"  
+	      class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+	    <property name="prefix">
+	    	<value>/WEB-INF/jsp/</value>
+	    </property>  
+	    <property name="suffix">  
+	        <value>.html</value>  
+	    </property>  
+	    <property name="contentType" value="text/html;charset=UTF-8"></property>  
+	</bean>
+	
+	<!-- 对静态资源文件的访问， 将无法mapping到Controller的path交给default servlet handler处理 -->
+	<mvc:default-servlet-handler/>
+	
+	<!-- 定义无Controller的path<->view直接映射 -->
+	<!-- <mvc:view-controller path="/" view-name="redirect:${web.view.index}"/> -->
+
+	<!-- 静态资源映射 -->
+    <!-- <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/> -->
+	
+	<bean id="multipartResolver"       class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+      <!-- set the max upload size100MB -->  
+      <property name="maxUploadSize">  
+           <value>104857600</value>  
+      </property>  
+      <property name="maxInMemorySize">  
+          <value>4096</value>  
+      </property>  
+</bean> 
+</beans>

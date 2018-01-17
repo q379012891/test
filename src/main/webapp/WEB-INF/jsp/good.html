@@ -1,0 +1,45 @@
+<div class="add-code">
+	  <div class="pro-code">
+	    <div class="code-detail">
+	    
+	      <div class="pro-num">
+	        <div>添加条码</div>
+	        <div class="code code1"> 
+	        <input  value="${id}"  readonly="readonly"    style="border: 0"   />
+	        </div>  
+	      </div>
+	      
+	      <div class="swiper-slide" style="transition: all 0s linear 0s; transform: translate3d(0px, 0px, 0px);" now_move="0">
+	        <div class="swiper-left swiper-code">
+	          <div class="pro-img">
+	            <div class="pro-lazy">
+	            <#if itemImage?? && itemImage != "">
+	              <img class="lazy" src="${baseurl}${itemImage}" alt="">
+	            </#if>
+<!-- 	              <img class="lazy" src="${baseurl}${itemImage}?x-oss-process=image/resize,m_fixed,w_100,h_100" alt=""> -->
+	            </div>
+	            <div class="pro-mc">${itemName}</div>
+	          </div>
+	          <div class="pro-info">
+<!-- 	            <p>商品编码：${prodCode}</p> -->
+	            <p>原产国：${oriCountry} </p>
+	            <p>品牌：${brandName} </p>
+	            <p>包装：${itemSpec}</p>
+	            <p>分类：${cateCode}   </p>
+	            <p>保质期：${expirationDate}天</p>
+	          </div>
+	          <div class="pro-num">
+	            <div>采购数量</div>&nbsp;&nbsp;&nbsp;&nbsp;
+	            <div class="input-num-1">
+	              <input   style="border: 0"   onpaste="return false"  class="num-infos" id="${id}"   type="tel" placeholder="订量1～999999">
+	            </div>
+	          </div>
+	        </div>
+	        <div class="swiper-delete swiper-right">
+	          <div>删除</div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	

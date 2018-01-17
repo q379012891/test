@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>扫码采购</title>
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="format-detection" content="telephone=no, email=no, address=no">
+<meta name="applicable-device" content="mobile">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="css/i/apple-touch/icon-57.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="css/i/apple-touch/icon-120.png">
+<link rel="apple-touch-icon-precomposed" sizes="196x196" href="css/i/apple-touch/icon-196.png">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="description" content="">
+<meta name="Keywords" content="">
+<script type="text/javascript">
+(function() { var a = this; a.width = 750; a.fontSize = 100; a.widthProportion = function() { var c = (document.getElementsByTagName("html")[0].offsetWidth) / a.width; return c > 1 ? 1 : c < 0.42667 ? 0.42667 : c; }; a.changePage=function() { var remVal=( parseFloat(a.widthProportion())*100).toFixed(2); document.getElementsByTagName( "html")[0].setAttribute( "style", "font-size:" + remVal + "px !important"); }; a.changePage(); window.addEventListener( "resize", function() { a.changePage() }, false); })();
+</script>
+<link rel="stylesheet" type="text/css" href="${webUiUrl}/css/icons.css">
+<link rel="stylesheet" type="text/css" href="${webUiUrl}/css/add-barcode.css">
+<link rel="stylesheet" type="text/css" href="${webUiUrl}/css/scan-code.css">
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script defer async type="text/javascript" data-main="${webUiUrl}/js/web/add-barcode.js" src="${webUiUrl}/js/base/require.min.js"></script>
+
+<script type="text/javascript"	src="${webUiUrl}/js/web/jquery.min.js"></script>
+<script type="text/javascript"	src="${webUiUrl}/js/web/ajaxfileupload.js"></script>
+<script type="text/javascript"  src="${webUiUrl}/js/web/applyaftersalesfileupload.js"></script>
+
+</head>
+<body>
+<div  class="scan-height"  >
+<div id="addCode">
+	
+</div>
+<!-- 添加条码 信息start -->
+<div class="code-content"  id="here">
+  <div class="add-code">
+    <div class="add-num">
+      <div>添加条码</div>
+      <div class="input-num">
+        <input class="num-info" onpaste="return false"  placeholder="请输入条形码编号" type="tel"  maxlength="20">
+        <input    id="selectValue"   type="hidden">
+        <div class="close-ico"></div>
+      </div>
+      <div class="scan-ico"></div>
+    </div>
+    <div class="code-history">
+<!--       <p>7 25390 41798 0</p> -->
+    </div>
+  </div>
+  <div class="pop-barcode"  >
+    <div class="pop-sm">
+      <div class="triangle-ico"></div>
+      <P>点击将相机对准商品条码即可扫描</P>
+      <div class="resource"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="toast" style="display:none;">
+	<p id="errorMsg"></p>
+</div>
+<div class="scan-btn"   >
+<input  class="next-btn" type="submit"   value="下一步"    />
+</div>
+<input id="appId" value="${appId}" type="hidden"/>
+<input id="timestamp" value="${timestamp}" type="hidden"/>
+<input id="noncestr" value="${noncestr}" type="hidden"/>
+<input id="signature" value="${signature}" type="hidden"/>
+<input id="webUrl"  value="${webUrl}" type="hidden" />
+<input id="randomDate" value="100" type="hidden" />
+<input id="serviceDomain" value="${serviceDomain}" type="hidden" />
+<input id="baseurl" value="${baseurl}" type="hidden" />
+
+<!-- 添加条码 信息end -->  
+<div  class="lunbo"   style="display: none;">
+
+
+</div>
+</body>

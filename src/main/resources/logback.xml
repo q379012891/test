@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+	<property resource="application.properties" />
+	<property name="rootPath" value="/opt/logs" />
+	<property name="LOG_HOME" value="tomcat"></property>
+	<property name="baseFile" value="wechat_web"></property>
+	<property name="log.root.level" value="DEBUG"></property>
+	<!-- 控制台输出日志 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%X{logthreadId}[%date{yyyy-MM-dd HH:mm:ss.SSS}] %level %logger{80} %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+<!-- INFO文件输出日志 (文件大小策略进行文件输出，每小时产生一个日志文件给异常监控平台进行分析) -->
+	<appender name="INFO_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${rootPath}/${LOG_HOME}/${baseFile}_info.log</File>
+		<!-- 日志文件rolling策略 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${rootPath}/${LOG_HOME}/${baseFile}_%d{yyyy-MM-dd}_info.log.gz</FileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+
+		<!-- 日志输出格式 -->
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%X{logthreadId} [%date{yyyy-MM-dd HH:mm:ss.SSS}] %level %logger{80} %msg%n
+			</Pattern>
+		</encoder>
+		<!-- 此日志文件只记录info级别，不记录大于info级别的日志 -->
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	
+	<!-- ERROR文件输出日志 (文件大小策略进行文件输出，每小时产生一个日志文件给异常监控平台进行分析) -->
+	<appender name="ERROR_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${rootPath}/${LOG_HOME}/${baseFile}_error.log</File>
+		<!-- 日志文件rolling策略 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${rootPath}/${LOG_HOME}/${baseFile}_%d{yyyy-MM-dd}_error.log.gz</FileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+
+		<!-- 日志输出格式 -->
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%X{logthreadId} [%date{yyyy-MM-dd HH:mm:ss.SSS}] %level %logger{80} %msg%n
+			</Pattern>
+		</encoder>
+		<!-- 此日志文件只记录info级别，不记录大于info级别的日志 -->
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+
+	<appender name="ASYNC_INFO" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+	      <queueSize>10000</queueSize>
+	      <appender-ref ref="INFO_FILE" />
+	</appender>
+	
+	<appender name="ASYNC_ERROR" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+	      <queueSize>10000</queueSize>
+	      <appender-ref ref="ERROR_FILE" />
+	</appender>
+
+	<logger name="com.blgroup" additivity="false">
+		<level value="${log.root.level}" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ASYNC_INFO" />
+		<appender-ref ref="ASYNC_ERROR" />
+		<appender-ref ref="kafkaAppender" />
+	</logger>
+
+	<logger name="org.mybatis.spring.boot" level="${log.root.level}" />
+	 
+	<root level="ERROR">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="catLogbackAppender" />
+	</root>
+
+	<logger name="org.apache.commons">
+		<level value="${log.root.level}" />
+	</logger>
+</configuration>

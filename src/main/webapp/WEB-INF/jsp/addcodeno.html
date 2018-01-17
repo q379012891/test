@@ -1,0 +1,78 @@
+  <div class="add-code nocode">
+    <div class="pro-code">
+      <div class="code-detail">
+	    
+	      <div class="pro-num">
+	        <div>添加条码</div>
+	        <div class="code no-code">
+	        	<input  style="border: 0"  value="${id}"    type="tel" />
+	        </div>
+	      </div>
+       <div class="swiper-slide" style="transition: all 0s linear 0s; transform: translate3d(0px, 0px, 0px);" now_move="0">
+	        <div class="swiper-left swiper-code">
+	        
+			<div class="pro-img pro-error">
+				<div class="pro-error"></div>
+				<div class="pro-mc">
+					没有找到 <font>${id} </font>对应的商品！<br /> 您可以上传商品图片，我们会帮您查找对应商品。<br />
+					请至少上传一张带有商品标签的图片。
+				</div>
+			</div>
+			<div class="pro-upload">
+				<ul   class="${fileId}">
+					<li  style="display: none;"  class="li1"  >
+					<div  class="div1"        style="display: none;" >
+						<img  class="lazy"   name="imgHead1" src=""	alt=""> 
+						<span class="spandiv1"></span>
+					</div>
+					</li>
+					
+					<li style="display: none;"   class="li2"  >
+					<div  class="div2"   style="display: none;"     >
+					<img class="lazy"   name="imgHead2" src=""	alt="">
+					 <span class="spandiv2"></span>
+					</div>
+					</li>
+					
+					<li  style="display: none;"   class="li3"  >
+					<div   class="div3" style="display: none;" >
+					<img class="lazy"   name="imgHead3" src=""	alt=""> 
+					<span class="spandiv3"></span>
+					</div>
+					</li>
+					
+					<li  style="display: none;"   class="li4"  >
+					<div  class="div4"  style="display: none;" >
+					<img class="lazy"   name="imgHead4" src=""	alt=""> 
+					<span class="spandiv4"></span>
+					</div>
+					</li>
+					<li  style="display: none;"   class="li5"  >
+					<div  class="div5"  style="display: none;" >
+					<img class="lazy"   name="imgHead5" src=""	alt=""> 
+					<span class="spandiv5"></span>
+					</div>
+					</li>
+					
+					<li class="file-upload"    >
+					<input  value="22"  class="file" type="file" onchange="uploadHead(this);"  id="${fileId}"   name="basicInfoHead" />
+					</li>
+				</ul>
+			
+  
+			</div>
+			<div class="pro-num">
+				<div>采购数量</div>&nbsp;&nbsp;&nbsp;&nbsp;
+				  <div class="input-num-1">
+	              <input style="border: 0"    onpaste="return false"  class="num-infos" id="${id}"    type="tel" placeholder="订量1～999999">
+	            </div>
+			</div>
+			    </div>
+			<div class="swiper-delete swiper-right">
+	          <div>删除</div>
+	        </div>
+	      </div>
+		</div>
+	</div>
+</div>
+

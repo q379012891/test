@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>确认采购单-输入联系人</title>
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="format-detection" content="telephone=no, email=no, address=no">
+<meta name="applicable-device" content="mobile">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="css/i/apple-touch/icon-57.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="css/i/apple-touch/icon-120.png">
+<link rel="apple-touch-icon-precomposed" sizes="196x196" href="css/i/apple-touch/icon-196.png">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta name="description" content="">
+<meta name="Keywords" content="">
+<script type="text/javascript">
+(function() { var a = this; a.width = 750; a.fontSize = 100; a.widthProportion = function() { var c = (document.getElementsByTagName("html")[0].offsetWidth) / a.width; return c > 1 ? 1 : c < 0.42667 ? 0.42667 : c; }; a.changePage=function() { var remVal=( parseFloat(a.widthProportion())*100).toFixed(2); document.getElementsByTagName( "html")[0].setAttribute( "style", "font-size:" + remVal + "px !important"); }; a.changePage(); window.addEventListener( "resize", function() { a.changePage() }, false); })();
+</script>
+<link rel="stylesheet" type="text/css" href="${webUiUrl}/css/icons.css">
+<link rel="stylesheet" type="text/css" href="${webUiUrl}/css/information.css">
+<link rel="stylesheet" type="text/css" href="${webUiUrl}/css/scan-code.css">
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script defer async type="text/javascript" data-main="${webUiUrl}/js/web/information.js" src="${webUiUrl}/js/base/require.min.js"></script>
+<style type="text/css">
+	.check-blhome:checked{background-color:#87D3FA;background-image:url("${webUiUrl}/css/i/checkbox-checked.png");background-repeat:no-repeat;background-position:center center;background-size:70%;border:0}
+</style>
+</head>
+
+<body style="background:#efeff4">
+    <div class="content">
+        <!-- <header class="bar bar-header bar-dark">
+            <div class="bar-left">
+                <a href="javascript:;" class="button return">
+                    <div class="iconfont arrow-back"></div>返回
+                </a>
+            </div>
+            <h1 class="title">
+                  扫码采购
+              </h1>
+            <div class="bar-right">
+                <a href="javascript:;" class="button iconfont error"></a>
+                <a href="javascript:;" class="button iconfont more-v"></a>
+            </div>
+        </header> -->
+        <div class="contact-information">
+            <div class="info-confirm">
+                <div class="info-titles">确认采购信息</div>
+                <div class="info-items">
+                    <ul class="info-list">
+                    <!-- 遍历已经扫到的商品 -->
+                     <#list list as	ll>
+                        <li class="info-item swiper s1">
+                            <input type="checkbox" name="" class="check-blhome"    checked="checked">
+                            <div class="swiper-left info-swiper">
+                                <a class="info-item-pic">
+                                	<#if ll.itemImage??>
+                                    	<img src="${cuturl}${ll.itemImage}@160h_160w_2e" alt="">
+                                    </#if>
+                                </a>
+                                <img src="" class="imageList" imgUrl="${ll.itemImage}" alt=""   style="display: none;">
+                                <div class="info-item-inner">
+                                    <a>
+                                        <div class="info-title">${ll.itemName}</font></div>
+                                        <input type="hidden" class="itemId" value="${ll.itemId}">
+                                        <input type="hidden" class="code" value="${ll.barCode}">
+                                    </a>
+                                    <div class="fright dw-show-1"   style="width: 150px">
+                                        <div class="fl-input" style="display:block;width: 150px">
+                                            <input type="tel" class="sum" maxlength="6" value="${ll.saleSum}" id="${ll.barCode}"   >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        </#list>
+                    <!-- 遍历新建商品 -->
+                     <#list goodsList as	ll>
+                        <li class="info-item swiper   s2">
+                            <input type="checkbox" name="" class="check-blhome"    checked="checked">
+                            <div class="swiper-left info-swiper">
+                                <a class="info-item-pic">
+                                    <#if ll.purchaseApplyGoodsImageList[0].imgUrl??>
+                                    	<img src="${cuturl}${ll.purchaseApplyGoodsImageList[0].imgUrl}?x-oss-process=image/resize,m_fixed,w_160,h_160" alt="">
+                                    </#if>
+                                    <#if ll.purchaseApplyGoodsImageList[1].imgUrl??>
+                                    	<img src="${cuturl}${ll.purchaseApplyGoodsImageList[1].imgUrl}?x-oss-process=image/resize,m_fixed,w_160,h_160" alt=""   style="display: none;">
+                                    </#if>
+                                    <#if ll.purchaseApplyGoodsImageList[2].imgUrl??>
+                                    	<img src="${cuturl}${ll.purchaseApplyGoodsImageList[2].imgUrl}?x-oss-process=image/resize,m_fixed,w_160,h_160" alt=""   style="display: none;">
+                                    </#if>
+                                    <#if ll.purchaseApplyGoodsImageList[3].imgUrl != "" && ll.purchaseApplyGoodsImageList[3].imgUrl != null>
+                                    	<img src="${cuturl}${ll.purchaseApplyGoodsImageList[3].imgUrl}?x-oss-process=image/resize,m_fixed,w_160,h_160" alt=""   style="display: none;">
+                                    </#if>
+                                    <#if ll.purchaseApplyGoodsImageList[4].imgUrl != "" && ll.purchaseApplyGoodsImageList[4].imgUrl != null>
+                                    	<img src="${cuturl}${ll.purchaseApplyGoodsImageList[4].imgUrl}?x-oss-process=image/resize,m_fixed,w_160,h_160" alt=""   style="display: none;">
+                                    </#if>
+                                </a>
+                                <#list ll.purchaseApplyGoodsImageList as	kk>
+                                	<img src="" class="imageList" imgUrl="${kk.imgUrl}" alt=""   style="display: none;">
+                                </#list>
+                                <div class="info-item-inner">
+                                    <a>
+                                        <div class="info-title">商品条码 <font  class="code">${ll.barCode}</font></div>
+                                    </a>
+                                    <div class="fright dw-show-1"   style="width: 150px">
+                                        <div class="fl-input" style="display:block;width: 150px">
+                                            <input type="tel" clsaa="sum" maxlength="6" value="${ll.saleSum}" id="${ll.barCode}"   >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        </#list>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="info-fill">
+                <div class="info-titles">填写采购人信息</div>
+                <div class="list-between">
+                    <div class="list-item">
+                        <div class="list-cell">
+                            <label class="form-name">采购人</label>
+                            <div class="form-control">
+                                <input type="text" name="purName" style="width: 180px;" placeholder="请输入采购人姓名" value="">
+                                <div class="form-close"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-cell">
+                            <label class="form-name">联系电话</label>
+                            <div class="form-control">
+                                <input type="text" name="purPhone" style="width: 180px;" placeholder="请输入联系人电话" value="">
+                                <div class="form-close"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-cell">
+                            <label class="form-name">所属企业</label>
+                            <div class="form-control">
+                                <input type="text" name="purCompany" style="width: 180px;" placeholder="请输入企业名称" value="">
+                                <div class="form-close"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="javascript:;" class="dis-confirmbtn">确认采购</a>
+        </div>
+    </div>
+    <!-- 图片预览 -->
+    <div  class="lunbo"   style="display: none;"></div>
+     <!-- 弹窗div -->
+    <div class="show-bg-msg" style="border-radius:.25rem;text-align:center;line-height:.5rem;color:#ffffff;background-color:rgba(0,0,0,.7);position:fixed;width:80%;left:10%;top:50%;font-size:.6rem;z-index:9999;display:none;padding:.3rem .5rem;margin:0px;font-size: 10px;"></div>
+    <input id="webUrl" value="${webUrl}" type="hidden" />
+    <input id="baseurl" value="${baseurl}" type="hidden" />
+    <input id="cuturl" value="${cuturl}" type="hidden" />
+</body>
+
+</html>
